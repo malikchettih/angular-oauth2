@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (window.location.href.indexOf('?postLogout=true') > 0) {
       this._authService.signoutRedirectCallback().then(() => {
-        let url: string = this._router.url.substring(
+        const url: string = this._router.url.substring(
           0,
           this._router.url.indexOf('?')
         );
@@ -43,9 +43,5 @@ export class AppComponent implements OnInit {
 
   isLoggedIn() {
     return this._authService.isLoggedIn();
-  }
-
-  isAdmin() {
-    return this._authService.authContext && this._authService.authContext.claims && (this._authService.authContext.claims.find(c => c.type === 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role' && c.value === 'Admin'));
   }
 }
